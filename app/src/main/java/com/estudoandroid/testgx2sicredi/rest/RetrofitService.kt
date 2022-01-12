@@ -5,11 +5,15 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface RetrofitService {
 
     @GET("events")
     fun getAllEvents(): Call<List<Event>>
+
+    @GET("events/{id}")
+    fun getEvent(@Path("id") id: String): Call<Event>
 
     companion object {
         private val retrofitService : RetrofitService by lazy{

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val retrofitService = RetrofitService.getInstance()
 
     private val adapter = MainAdapter{
-        openDetailEvent(it.id)
+        openEvent(it.id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         viewModel.eventList.observe(this, Observer { events ->
-            Log.i("Erisson", "OnStart")
             adapter.setEventList(events)
         })
 
@@ -57,7 +56,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllEvents()
     }
 
-    private fun openDetailEvent(id: String){
+    private fun openEvent(id: String){
 
+        viewModel.getEvent(id)
+
+        viewModel.event.observe(this, Observer { event ->
+            Log.i("Erisson", "OnStart")
+        })
+
+        viewModel.errorMessage.observe(this, Observer {  message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        })
     }
 }
