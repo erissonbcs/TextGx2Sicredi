@@ -2,6 +2,7 @@ package com.estudoandroid.testgx2sicredi.viewmodel.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.estudoandroid.testgx2sicredi.models.Checkin
 import com.estudoandroid.testgx2sicredi.models.Event
 import com.estudoandroid.testgx2sicredi.repositories.MainRepository
 import retrofit2.Call
@@ -12,6 +13,7 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
 
     val eventList = MutableLiveData<List<Event>>()
     val event = MutableLiveData<Event>()
+    val checkinData = MutableLiveData<Checkin>()
     val errorMessage = MutableLiveData<String>()
 
     fun getAllEvents(){
@@ -37,6 +39,20 @@ class MainViewModel constructor(private val repository: MainRepository) : ViewMo
             }
 
             override fun onFailure(call: Call<Event>, t: Throwable) {
+                errorMessage.postValue(t.message)
+            }
+
+        })
+    }
+
+    fun checkin(checkin: Checkin){
+        val response = repository.checkin(checkin)
+        response.enqueue(object : Callback<Checkin>{
+            override fun onResponse(call: Call<Checkin>, response: Response<Checkin>) {
+                checkinData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<Checkin>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }
 

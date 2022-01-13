@@ -3,12 +3,14 @@ package com.estudoandroid.testgx2sicredi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.estudoandroid.testgx2sicredi.databinding.ActivityDetailBinding
+import com.estudoandroid.testgx2sicredi.models.Checkin
 import com.estudoandroid.testgx2sicredi.repositories.MainRepository
 import com.estudoandroid.testgx2sicredi.rest.RetrofitService
 import com.estudoandroid.testgx2sicredi.utils.DateFormat
@@ -32,6 +34,12 @@ class DetailActivity : AppCompatActivity() {
         )
 
         val id: String? = intent.getStringExtra("id")
+
+        binding.btCheckin.setOnClickListener(View.OnClickListener {
+            checkin(id.toString())
+        })
+
+
         showDetail(id.toString())
     }
 
@@ -52,6 +60,21 @@ class DetailActivity : AppCompatActivity() {
                 .applyDefaultRequestOptions(requestOptions)
                 .load(event.image)
                 .into(binding.imageDetail)
+        })
+
+        viewModel.errorMessage.observe(this, Observer {  message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    //TODO OBS: O metodo do checkin estava fora! Nao foi possivel testar
+    private fun checkin(id: String){
+        val checkin = Checkin(id, "Erisson Batista", "erissonbcs@gmail.com")
+
+        viewModel.checkin(checkin)
+
+        viewModel.checkinData.observe(this, Observer { response ->
+
         })
 
         viewModel.errorMessage.observe(this, Observer {  message ->

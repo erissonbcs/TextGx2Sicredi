@@ -1,10 +1,15 @@
 package com.estudoandroid.testgx2sicredi.rest
 
+import com.estudoandroid.testgx2sicredi.models.Checkin
 import com.estudoandroid.testgx2sicredi.models.Event
+import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface RetrofitService {
@@ -14,6 +19,9 @@ interface RetrofitService {
 
     @GET("events/{id}")
     fun getEvent(@Path("id") id: String): Call<Event>
+
+    @POST("checkin")
+    fun checkin(@Body checkin: Checkin): Call<Checkin>
 
     companion object {
         private val retrofitService : RetrofitService by lazy{
