@@ -53,9 +53,9 @@ class MainViewHolder(val binding: ResItemEventBinding) : RecyclerView.ViewHolder
             .load(event.image)
             .into(binding.image)
 
-        itemView.setOnClickListener {
+         itemView.setOnClickListener {
             onItemClicked(event)
-        }
+         }
     }
 
 }

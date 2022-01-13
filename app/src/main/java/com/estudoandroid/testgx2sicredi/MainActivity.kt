@@ -1,5 +1,8 @@
 package com.estudoandroid.testgx2sicredi
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,9 +19,7 @@ import com.estudoandroid.testgx2sicredi.viewmodel.main.MainViewModelFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-
     lateinit var viewModel : MainViewModel
-
     private val retrofitService = RetrofitService.getInstance()
 
     private val adapter = MainAdapter{
@@ -58,14 +59,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun openEvent(id: String){
 
-        viewModel.getEvent(id)
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("id", id)
 
-        viewModel.event.observe(this, Observer { event ->
-            Log.i("Erisson", "OnStart")
-        })
+        if (Build.VERSION.SDK_INT >= 21) {
+            val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this)
+            startActivity(intent, activityOptions.toBundle())
+        }else{
+            startActivity(intent)
+        }
 
-        viewModel.errorMessage.observe(this, Observer {  message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        })
     }
 }

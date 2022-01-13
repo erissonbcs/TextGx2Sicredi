@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".DetailActivity">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <com.google.android.material.card.MaterialCardView
         app:cardUseCompatPadding="true"
@@ -21,7 +28,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/image_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
@@ -33,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:id="@+id/container1"
+                android:id="@+id/container2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -41,10 +48,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image">
+                app:layout_constraintTop_toBottomOf="@id/image_detail">
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/title_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Título do Evento"
@@ -52,17 +59,42 @@
                     android:textSize="19sp" />
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/date_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Data do evento"
                     android:textSize="15sp" />
 
+                <TextView
+                    android:id="@+id/description_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Descrição do evento"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/price_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Preço do evento"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/checkin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CHECK-IN" />
+
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
