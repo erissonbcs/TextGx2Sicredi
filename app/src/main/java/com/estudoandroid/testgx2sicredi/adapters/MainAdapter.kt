@@ -1,5 +1,6 @@
 package com.estudoandroid.testgx2sicredi.adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -48,9 +49,14 @@ class MainViewHolder(val binding: ResItemEventBinding) : RecyclerView.ViewHolder
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
 
+        var image = event.image
+        if (Build.VERSION.SDK_INT > 27 && !event.image.contains("https")) {
+            image = image.replace("http", "https")
+        }
+
         Glide.with(itemView.context)
             .applyDefaultRequestOptions(requestOptions)
-            .load(event.image)
+            .load(image)
             .into(binding.image)
 
          itemView.setOnClickListener {

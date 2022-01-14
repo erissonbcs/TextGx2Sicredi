@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.recyclerview.adapter = adapter
+
     }
 
     override fun onStart() {
