@@ -2,5 +2,6 @@
     <string name="app_name">TestGx2Sicredi</string>
     <string name="google_maps_key">AIzaSyAKdcaiw8N1nWv-1gLx0hp0EasPNKFHcvM</string>
     <string name="bt_confirmar_presenca">Confirmar Presença</string>
+    <string name="bt_confirmar">Confirmar</string>
     <string name="txtCheckinSucess">Presença Confirmada</string>
 </resources>

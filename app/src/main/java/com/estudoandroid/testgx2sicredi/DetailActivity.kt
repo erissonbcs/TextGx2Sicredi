@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -12,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.estudoandroid.testgx2sicredi.databinding.ActivityDetailBinding
+import com.estudoandroid.testgx2sicredi.fragments.DialogCheckin
 import com.estudoandroid.testgx2sicredi.models.Checkin
 import com.estudoandroid.testgx2sicredi.repositories.MainRepository
 import com.estudoandroid.testgx2sicredi.rest.RetrofitService
@@ -38,7 +38,8 @@ class DetailActivity : AppCompatActivity() {
         val id: String? = intent.getStringExtra("id")
 
         binding.btCheckin.setOnClickListener(View.OnClickListener {
-            checkin(id.toString())
+            //DialogCheckin().show(supportFragmentManager, "customdialog")
+            checkin(it.id.toString(), "Erisson", "erisson@gmail.com")
         })
 
 
@@ -84,14 +85,14 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkin(id: String){
-        val checkin = Checkin(id, "Erisson Batista", "erissonbcs@gmail.com")
+    private fun checkin(id: String, name: String, email: String){
+        val checkin = Checkin(id, name, email)
 
         viewModel.checkin(checkin)
 
         viewModel.checkinData.observe(this, Observer { response ->
-            finish()
-            startActivity(Intent(this,SucessActivity::class.java))
+           finish()
+           startActivity(Intent(this,SucessActivity::class.java))
         })
 
         viewModel.errorMessage.observe(this, Observer {  message ->
