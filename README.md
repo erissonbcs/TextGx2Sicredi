@@ -24,4 +24,4 @@ LiveData - Usada para observar as alterações de um ViewModel e atualizar essas
 manual do ciclo de vida. Também garante que a interface do usuário esteja sempre atualizada com os dados, mesmo quando a atividade do aplicativo 
 for reiniciada durante o uso. 
 
-Google Maps SDK - Utilzido para exibir o mapa na aplicação.
+Google Maps SDK - Utilizado para exibir o mapa na aplicação.
